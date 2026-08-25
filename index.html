@@ -184,6 +184,17 @@ tr:hover td{
     font-weight:bold;
 }
 
+.team-link{
+    background:transparent;
+    border:0;
+    color:#111;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:underline;
+    padding:0;
+    font-size:inherit;
+}
+
 /* STAT CARDS */
 
 .stat-grid{
@@ -265,6 +276,8 @@ tr:hover td{
     font-weight:bold;
 }
 
+.game-team .team-link{ text-decoration:underline; }
+
 .game-time{
     color:#777;
     font-size:13px;
@@ -275,6 +288,35 @@ tr:hover td{
     padding:30px;
     color:#777;
 }
+
+/* TEAM MODAL */
+
+#team-modal{
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:9999;
+}
+
+#team-modal .modal-content{
+    background:white;
+    max-width:700px;
+    width:100%;
+    border-radius:8px;
+    padding:20px;
+}
+
+#team-modal h3{ margin-bottom:6px; }
+#team-modal .close-btn{ float:right; background:transparent; border:0; font-size:18px; cursor:pointer; }
+#team-modal table{ width:100%; border-collapse:collapse; margin-top:10px; }
+#team-modal th, #team-modal td{ text-align:left; padding:8px; border-bottom:1px solid #eee; }
 
 /* FOOTER */
 
@@ -1075,8 +1117,135 @@ tr:hover td{
 </div>
 
 
-<script>
+<!-- TEAM MODAL -->
+<div id="team-modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true">
+    <button class="close-btn" aria-label="Close" onclick="closeTeamModal()">✕</button>
+    <h3 id="modal-team-name">Team Name</h3>
+    <div id="modal-team-record">Record: 0-0</div>
+    <table id="modal-team-players">
+      <thead>
+        <tr><th>Player</th><th>PPG</th><th>APG</th><th>RPG</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
 
+<script>
+// Data store for teams and players. We'll populate this dynamically for the placeholder teams we detect.
+var teamsData = {};
+
+function createPlaceholderPlayers(teamId){
+  // return 5 placeholder players
+  return [
+    {name: 'Player 1', ppg: 0.0, apg: 0.0, rpg: 0.0},
+    {name: 'Player 2', ppg: 0.0, apg: 0.0, rpg: 0.0},
+    {name: 'Player 3', ppg: 0.0, apg: 0.0, rpg: 0.0},
+    {name: 'Player 4', ppg: 0.0, apg: 0.0, rpg: 0.0},
+    {name: 'Player 5', ppg: 0.0, apg: 0.0, rpg: 0.0}
+  ];
+}
+
+function ensureTeamsInitialized(){
+  // For each division, scan standings rows and assign unique team ids. Use that to initialize teamsData if missing.
+  document.querySelectorAll('.division').forEach(function(div){
+    var divisionId = div.id || 'division';
+    // standings rows
+    var rows = div.querySelectorAll('tbody tr');
+    rows.forEach(function(row, idx){
+      var td = row.querySelector('.team');
+      if(!td) return;
+      // create team id
+      var teamId = divisionId + '-t' + (idx+1);
+      // store original text if any
+      var teamLabel = (td.textContent || 'Team ' + (idx+1)).trim();
+      // replace td content with a button
+      var btn = document.createElement('button');
+      btn.className = 'team-link';
+      btn.textContent = teamLabel === '' ? ('Team ' + (idx+1)) : teamLabel;
+      btn.setAttribute('data-team', teamId);
+      btn.onclick = function(){ showTeam(teamId); };
+      // clear and append
+      td.textContent = '';
+      td.appendChild(btn);
+
+      // initialize teamsData if not present
+      if(!teamsData[teamId]){
+        teamsData[teamId] = {
+          id: teamId,
+          name: btn.textContent,
+          record: {w:0,l:0},
+          players: createPlaceholderPlayers(teamId)
+        };
+      }
+    });
+
+    // Now handle schedule team entries inside this division
+    // Find schedule section inside this div (could be #schedule, #schedule-u18, #schedule-unlimited)
+    var schedule = div.querySelector('#schedule') || div.querySelector('#schedule-u18') || div.querySelector('#schedule-unlimited');
+    if(schedule){
+      // get all .game-team elements and replace their content with buttons
+      var gameTeams = schedule.querySelectorAll('.game-team');
+      // We'll map them in order to the teams we created above. If there are more game-team occurrences than teams, we'll cycle.
+      var teamIds = Object.keys(teamsData).filter(function(k){ return k.indexOf(divisionId + '-') === 0; });
+      if(teamIds.length === 0){
+        // fallback: create 4 teams
+        for(var i=0;i<4;i++){
+          var tId = divisionId + '-t' + (i+1);
+          if(!teamsData[tId]) teamsData[tId] = { id:tId, name:'Team ' + (i+1), record:{w:0,l:0}, players:createPlaceholderPlayers(tId) };
+        }
+        teamIds = Object.keys(teamsData).filter(function(k){ return k.indexOf(divisionId + '-') === 0; });
+      }
+
+      var mapIndex = 0;
+      gameTeams.forEach(function(gt){
+        var label = (gt.textContent || '').trim();
+        // if label looks like a team (or placeholder), attach button
+        var chosenId = teamIds[mapIndex % teamIds.length];
+        mapIndex++;
+        // create button
+        var btn = document.createElement('button');
+        btn.className = 'team-link';
+        btn.textContent = teamsData[chosenId].name || 'Team';
+        btn.setAttribute('data-team', chosenId);
+        btn.onclick = function(){ showTeam(chosenId); };
+        gt.textContent = '';
+        gt.appendChild(btn);
+      });
+    }
+
+  });
+}
+
+function showTeam(teamId){
+  var t = teamsData[teamId];
+  if(!t) return;
+  var modal = document.getElementById('team-modal');
+  document.getElementById('modal-team-name').textContent = t.name;
+  document.getElementById('modal-team-record').textContent = 'Record: ' + (t.record.w||0) + ' - ' + (t.record.l||0);
+  var tbody = document.querySelector('#modal-team-players tbody');
+  tbody.innerHTML = '';
+  t.players.forEach(function(p){
+    var tr = document.createElement('tr');
+    var n = document.createElement('td'); n.textContent = p.name;
+    var ppg = document.createElement('td'); ppg.textContent = p.ppg.toFixed ? p.ppg.toFixed(1) : p.ppg;
+    var apg = document.createElement('td'); apg.textContent = p.apg.toFixed ? p.apg.toFixed(1) : p.apg;
+    var rpg = document.createElement('td'); rpg.textContent = p.rpg.toFixed ? p.rpg.toFixed(1) : p.rpg;
+    tr.appendChild(n); tr.appendChild(ppg); tr.appendChild(apg); tr.appendChild(rpg);
+    tbody.appendChild(tr);
+  });
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden','false');
+}
+
+function closeTeamModal(){
+  var modal = document.getElementById('team-modal');
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden','true');
+}
+
+// existing page functions
 function changeDivision(id,button){
 
     document.querySelectorAll(".division").forEach(function(div){
@@ -1103,8 +1272,13 @@ function goTo(section){
     }
 }
 
-// ensure initial state
-changeDivision('u13', document.querySelector('.age-selector .age.active'));
+// initialize teams and UI when DOM ready
+document.addEventListener('DOMContentLoaded', function(){
+  // ensure division visible state
+  changeDivision('u13', document.querySelector('.age-selector .age.active'));
+  // build clickable team links and placeholder data
+  ensureTeamsInitialized();
+});
 
 </script>
 </body>
