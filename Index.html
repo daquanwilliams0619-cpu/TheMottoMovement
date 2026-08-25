@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TheMottoMovement</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f5f5;
+    color:#111;
+}
+
+/* TOP NAVIGATION */
+
+.topbar{
+    background:#111;
+    color:white;
+    min-height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+}
+
+.logo span{
+    color:#f5b400;
+}
+
+.nav{
+    display:flex;
+    gap:8px;
+}
+
+.nav button{
+    background:transparent;
+    border:0;
+    color:white;
+    padding:12px 15px;
+    font-weight:bold;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.nav button:hover{
+    background:#f5b400;
+    color:#111;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(120deg,#111,#252525);
+    color:white;
+    padding:55px 25px;
+}
+
+.hero h1{
+    font-size:46px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+    color:#f5b400;
+}
+
+.hero p{
+    color:#ccc;
+    font-size:16px;
+}
+
+/* AGE SELECTOR */
+
+.age-selector{
+    background:white;
+    padding:18px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    border-bottom:1px solid #ddd;
+}
+
+.age-selector button{
+    padding:13px 25px;
+    background:white;
+    border:2px solid #111;
+    border-radius:5px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.age-selector button.active{
+    background:#111;
+    color:#f5b400;
+}
+
+/* MAIN */
+
+.container{
+    width:95%;
+    max-width:1200px;
+    margin:30px auto;
+}
+
+.division-title{
+    margin-bottom:25px;
+}
+
+.division-title h2{
+    font-size:32px;
+}
+
+.division-title p{
+    color:#777;
+    margin-top:5px;
+}
+
+/* SECTION */
+
+.section{
+    background:white;
+    margin-bottom:25px;
+    border-radius:7px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.section-title{
+    background:#111;
+    color:white;
+    padding:16px 20px;
+    font-size:19px;
+    font-weight:bold;
+}
+
+.section-title span{
+    color:#f5b400;
+}
+
+/* TABLE */
+
+.table-scroll{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
+}
+
+th{
+    background:#eee;
+    padding:13px;
+    text-align:left;
+    font-size:12px;
+}
+
+td{
+    padding:14px 13px;
+    border-top:1px solid #eee;
+}
+
+tr:hover td{
+    background:#fafafa;
+}
+
+.team{
+    font-weight:bold;
+}
+
+/* STAT CARDS */
+
+.stat-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    padding:20px;
+}
+
+.stat{
+    border:1px solid #ddd;
+    padding:20px;
+    border-radius:6px;
+    text-align:center;
+}
+
+.stat-number{
+    font-size:28px;
+    font-weight:900;
+}
+
+.stat-label{
+    color:#777;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* LEADERS */
+
+.leader-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    padding:20px;
+}
+
+.leader{
+    border:1px solid #ddd;
+    border-radius:6px;
+    padding:20px;
+}
+
+.leader-category{
+    color:#777;
+    font-size:11px;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+.leader-name{
+    font-weight:bold;
+    font-size:18px;
+    margin-top:10px;
+}
+
+.leader-value{
+    color:#f5b400;
+    font-size:26px;
+    font-weight:900;
+    margin-top:5px;
+}
+
+/* SCHEDULE */
+
+.game{
+    display:grid;
+    grid-template-columns:1fr 100px 1fr;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    border-bottom:1px solid #eee;
+}
+
+.game:last-child{
+    border-bottom:0;
+}
+
+.game-team{
+    font-weight:bold;
+}
+
+.game-time{
+    color:#777;
+    font-size:13px;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#777;
+}
+
+/* FOOTER */
+
+.footer{
+    background:#111;
+    color:white;
+    padding:35px 20px;
+    text-align:center;
+    margin-top:50px;
+}
+
+.footer h2{
+    font-size:23px;
+}
+
+.footer span{
+    color:#f5b400;
+}
+
+.footer p{
+    color:#aaa;
+    margin-top:8px;
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .topbar{
+        flex-direction:column;
+        gap:12px;
+        padding:15px;
+    }
+
+    .nav{
+        width:100%;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .age-selector{
+        flex-direction:column;
+    }
+
+    .age-selector button{
+        width:100%;
+    }
+
+    .stat-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .leader-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .stat-grid{
+        grid-template-columns:1fr;
+    }
+
+    .leader-grid{
+        grid-template-columns:1fr;
+    }
+
+    .game{
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<div class="topbar">
+
+    <div class="logo">
+        TheMotto<span>Movement</span>
+    </div>
+
+    <div class="nav">
+        <button onclick="goTo('standings')">Standings</button>
+        <button onclick="goTo('stats')">Stats</button>
+        <button onclick="goTo('leaders')">Leaders</button>
+        <button onclick="goTo('schedule')">Schedule</button>
+    </div>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero">
+
+    <h1>
+        TheMotto<span>Movement</span>
+    </h1>
+
+    <p>
+        Basketball • Competition • Community
+    </p>
+
+</div>
+
+
+<!-- AGE GROUPS -->
+
+<div class="age-selector">
+
+    <button class="age active" onclick="changeDivision('u13',this)">
+        13 AND UNDER
+    </button>
+
+    <button class="age" onclick="changeDivision('u18',this)">
+        14–18
+    </button>
+
+    <button class="age" onclick="changeDivision('unlimited',this)">
+        UNLIMITED
+    </button>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- ========================= -->
+<!-- 13 AND UNDER -->
+<!-- ========================= -->
+
+<div class="division" id="u13">
+
+    <div class="division-title">
+        <h2>13 & Under</h2>
+        <p>2026 League</p>
+    </div>
+
+
+    <!-- STANDINGS -->
+
+    <div class="section" id="standings">
+
+        <div class="section-title">
+            <span>01</span> Standings
+        </div>
+
+        <div class="table-scroll">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>TEAM</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>WIN %</th>
+                    <th>PF</th>
+                    <th>PA</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="section" id="stats">
+
+        <div class="section-title">
+            <span>02</span> League Stats
+        </div>
+
+        <div class="stat-grid">
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Games Played</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Total Points</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Total Rebounds</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Total Assists</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LEADERS -->
+
+    <div class="section" id="leaders">
+
+        <div class="section-title">
+            <span>03</span> League Leaders
+        </div>
+
+        <div class="leader-grid">
+
+            <div class="leader">
+                <div class="leader-category">
+                    Points Per Game
+                </div>
+
+                <div class="leader-name">
+                    Player Name
+                </div>
+
+                <div class="leader-value">
+                    0.0
+                </div>
+            </div>
+
+
+            <div class="leader">
+                <div class="leader-category">
+                    Rebounds Per Game
+                </div>
+
+                <div class="leader-name">
+                    Player Name
+                </div>
+
+                <div class="leader-value">
+                    0.0
+                </div>
+            </div>
+
+
+            <div class="leader">
+                <div class="leader-category">
+                    Assists Per Game
+                </div>
+
+                <div class="leader-name">
+                    Player Name
+                </div>
+
+                <div class="leader-value">
+                    0.0
+                </div>
+            </div>
+
+
+            <div class="leader">
+                <div class="leader-category">
+                    Steals Per Game
+                </div>
+
+                <div class="leader-name">
+                    Player Name
+                </div>
+
+                <div class="leader-value">
+                    0.0
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCHEDULE -->
+
+    <div class="section" id="schedule">
+
+        <div class="section-title">
+            <span>04</span> Schedule
+        </div>
+
+        <div class="game">
+
+            <div class="game-team">
+                TEAM NAME
+            </div>
+
+            <div class="game-time">
+                TBD
+            </div>
+
+            <div class="game-team">
+                TEAM NAME
+            </div>
+
+        </div>
+
+        <div class="game">
+
+            <div class="game-team">
+                TEAM NAME
+            </div>
+
+            <div class="game-time">
+                TBD
+            </div>
+
+            <div class="game-team">
+                TEAM NAME
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- 14–18 -->
+<!-- ========================= -->
+
+<div class="division" id="u18" style="display:none;">
+
+    <div class="division-title">
+        <h2>14–18</h2>
+        <p>2026 League</p>
+    </div>
+
+    <div class="section">
+
+        <div class="section-title">
+            <span>01</span> Standings
+        </div>
+
+        <div class="table-scroll">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>TEAM</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>WIN %</th>
+                    <th>PF</th>
+                    <th>PA</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    </div>
+
+
+    <div class="section">
+
+        <div class="section-title">
+            <span>02</span> League Stats
+        </div>
+
+        <div class="stat-grid">
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Games Played</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Total Points</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Total Rebounds</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Total Assists</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="section">
+
+        <div class="section-title">
+            <span>03</span> League Leaders
+        </div>
+
+        <div class="leader-grid">
+
+            <div class="leader">
+                <div class="leader-category">Points Per Game</div>
+                <div class="leader-name">Player Name</div>
+                <div class="leader-value">0.0</div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">Rebounds Per Game</div>
+                <div class="leader-name">Player Name</div>
+                <div class="leader-value">0.0</div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">Assists Per Game</div>
+                <div class="leader-name">Player Name</div>
+                <div class="leader-value">0.0</div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">Steals Per Game</div>
+                <div class="leader-name">Player Name</div>
+                <div class="leader-value">0.0</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- UNLIMITED -->
+<!-- ========================= -->
+
+<div class="division" id="unlimited" style="display:none;">
+
+    <div class="division-title">
+        <h2>Unlimited</h2>
+        <p>2026 League</p>
+    </div>
+
+    <div class="section">
+
+        <div class="section-title">
+            <span>01</span> Standings
+        </div>
+
+        <div class="table-scroll">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>TEAM</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>WIN %</th>
+                    <th>PF</th>
+                    <th>PA</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td class="team">TEAM NAME</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    </div>
+
+
+    <div class="section">
+
+        <div class="section-title">
+            <span>02</span> League Stats
+        </div>
+
+        <div class="stat-grid">
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Games Played</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Total Points</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Total Rebounds</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Total Assists</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="section">
+
+        <div class="section-title">
+            <span>03</span> League Leaders
+        </div>
+
+        <div class="leader-grid">
+
+            <div class="leader">
+                <div class="leader-category">Points Per Game</div>
+                <div class="leader-name">Player Name</div>
+                <div class="leader-value">0.0</div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">Rebounds Per Game</div>
+                <div class="leader-name">Player Name</div>
+                <div class="leader-value">0.0</div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">Assists Per Game</div>
+                <div class="leader-name">Player Name</div>
+                <div class="leader-value">0.0</div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">Steals Per Game</div>
+                <div class="leader-name">Player Name</div>
+                <div class="leader-value">0.0</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    <h2>
+        TheMotto<span>Movement</span>
+    </h2>
+
+    <p>
+        Basketball • Competition • Community
+    </p>
+
+    <p>
+        © 2026 TheMottoMovement
+    </p>
+
+</div>
+
+
+<script>
+
+function changeDivision(id,button){
+
+    document.querySelectorAll(".division").forEach(function(div){
+        div.style.display="none";
+    });
+
+    document.getElementById(id).style.display="block";
+
+    document.querySelectorAll(".age").forEach(function(btn){
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function goTo(id){
+
+    let element=document.getElementById(id);
+
+    if(element){
+
+        element.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
