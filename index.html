@@ -709,31 +709,220 @@ tr:hover td{
         <p>2026 League</p>
     </div>
 
-    <div class="section">
-        <div class="section-title"><span>01</span> Standings</div>
+    <!-- STANDINGS -->
+
+    <div class="section" id="standings-u18">
+
+        <div class="section-title">
+            <span>01</span> Standings
+        </div>
+
         <div class="table-scroll">
-            <table>
-                <thead>
-                    <tr><th>#</th><th>TEAM</th><th>W</th><th>L</th><th>WIN %</th><th>PF</th><th>PA</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>1</td><td class="team">TEAM NAME</td><td>0</td><td>0</td><td>.000</td><td>0</td><td>0</td></tr>
-                </tbody>
-            </table>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>TEAM</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>WIN %</th>
+                    <th>PF</th>
+                    <th>PA</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td class="team"><button class="team-link" onclick="openTeamModal('Northside Eagles')">Northside Eagles</button></td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>.100</td>
+                    <td>120</td>
+                    <td>80</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td class="team"><button class="team-link" onclick="openTeamModal('Downtown Raptors')">Downtown Raptors</button></td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>.500</td>
+                    <td>95</td>
+                    <td>100</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td class="team"><button class="team-link" onclick="openTeamModal('Westside Wolves')">Westside Wolves</button></td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>.000</td>
+                    <td>70</td>
+                    <td>105</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td class="team"><button class="team-link" onclick="openTeamModal('City Chargers')">City Chargers</button></td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
         </div>
+
     </div>
 
-    <div class="section">
-        <div class="section-title"><span>02</span> League Stats</div>
+    <!-- STATS -->
+
+    <div class="section" id="stats-u18">
+
+        <div class="section-title">
+            <span>02</span> League Stats
+        </div>
+
         <div class="stat-grid">
-            <div class="stat"><div class="stat-number">0</div><div class="stat-label">Games Played</div></div>
-            <div class="stat"><div class="stat-number">0</div><div class="stat-label">Total Points</div></div>
-            <div class="stat"><div class="stat-number">0</div><div class="stat-label">Total Rebounds</div></div>
-            <div class="stat"><div class="stat-number">0</div><div class="stat-label">Total Assists</div></div>
+
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Games Played</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">285</div>
+                <div class="stat-label">Total Points</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">150</div>
+                <div class="stat-label">Total Rebounds</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">62</div>
+                <div class="stat-label">Total Assists</div>
+            </div>
+
         </div>
+
     </div>
 
-</div>
+    <!-- LEADERS -->
+
+    <div class="section" id="leaders-u18">
+
+        <div class="section-title">
+            <span>03</span> League Leaders
+        </div>
+
+        <div class="leader-grid">
+
+            <div class="leader">
+                <div class="leader-category">
+                    Points Per Game
+                </div>
+
+                <div class="leader-name">
+                    J. Thompson
+                </div>
+
+                <div class="leader-value">
+                    18.5
+                </div>
+            </div>
+
+
+            <div class="leader">
+                <div class="leader-category">
+                    Rebounds Per Game
+                </div>
+
+                <div class="leader-name">
+                    M. Rivers
+                </div>
+
+                <div class="leader-value">
+                    9.2
+                </div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">
+                    Assists Per Game
+                </div>
+
+                <div class="leader-name">
+                    K. Lee
+                </div>
+
+                <div class="leader-value">
+                    6.1
+                </div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">
+                    Steals Per Game
+                </div>
+
+                <div class="leader-name">
+                    A. Martinez
+                </div>
+
+                <div class="leader-value">
+                    3.0
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCHEDULE -->
+
+    <div class="section" id="schedule-u18">
+
+        <div class="section-title">
+            <span>04</span> Schedule
+        </div>
+
+        <div>
+
+            <div class="game">
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Northside Eagles')">Northside Eagles</button></div>
+                <div class="game-time">5:00 PM</div>
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Downtown Raptors')">Downtown Raptors</button></div>
+            </div>
+
+            <div class="game">
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Westside Wolves')">Westside Wolves</button></div>
+                <div class="game-time">6:30 PM</div>
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('City Chargers')">City Chargers</button></div>
+            </div>
+
+            <div class="game">
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Northside Eagles')">Northside Eagles</button></div>
+                <div class="game-time">Saturday • 10:00 AM</div>
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Westside Wolves')">Westside Wolves</button></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div> <!-- end u18 division -->
 
 
 <!-- ========================= -->
@@ -747,21 +936,220 @@ tr:hover td{
         <p>2026 League</p>
     </div>
 
-    <div class="section">
-        <div class="section-title"><span>01</span> Standings</div>
-        <div class="table-scroll">
-            <table>
-                <thead>
-                    <tr><th>#</th><th>TEAM</th><th>W</th><th>L</th><th>WIN %</th><th>PF</th><th>PA</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>1</td><td class="team">TEAM NAME</td><td>0</td><td>0</td><td>.000</td><td>0</td><td>0</td></tr>
-                </tbody>
-            </table>
+    <!-- STANDINGS -->
+
+    <div class="section" id="standings-unlimited">
+
+        <div class="section-title">
+            <span>01</span> Standings
         </div>
+
+        <div class="table-scroll">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>TEAM</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>WIN %</th>
+                    <th>PF</th>
+                    <th>PA</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td class="team"><button class="team-link" onclick="openTeamModal('Northside Eagles')">Northside Eagles</button></td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>.100</td>
+                    <td>120</td>
+                    <td>80</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td class="team"><button class="team-link" onclick="openTeamModal('Downtown Raptors')">Downtown Raptors</button></td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>.500</td>
+                    <td>95</td>
+                    <td>100</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td class="team"><button class="team-link" onclick="openTeamModal('Westside Wolves')">Westside Wolves</button></td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>.000</td>
+                    <td>70</td>
+                    <td>105</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td class="team"><button class="team-link" onclick="openTeamModal('City Chargers')">City Chargers</button></td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>.000</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        </div>
+
     </div>
 
-</div>
+    <!-- STATS -->
+
+    <div class="section" id="stats-unlimited">
+
+        <div class="section-title">
+            <span>02</span> League Stats
+        </div>
+
+        <div class="stat-grid">
+
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Games Played</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">285</div>
+                <div class="stat-label">Total Points</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">150</div>
+                <div class="stat-label">Total Rebounds</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">62</div>
+                <div class="stat-label">Total Assists</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- LEADERS -->
+
+    <div class="section" id="leaders-unlimited">
+
+        <div class="section-title">
+            <span>03</span> League Leaders
+        </div>
+
+        <div class="leader-grid">
+
+            <div class="leader">
+                <div class="leader-category">
+                    Points Per Game
+                </div>
+
+                <div class="leader-name">
+                    J. Thompson
+                </div>
+
+                <div class="leader-value">
+                    18.5
+                </div>
+            </div>
+
+
+            <div class="leader">
+                <div class="leader-category">
+                    Rebounds Per Game
+                </div>
+
+                <div class="leader-name">
+                    M. Rivers
+                </div>
+
+                <div class="leader-value">
+                    9.2
+                </div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">
+                    Assists Per Game
+                </div>
+
+                <div class="leader-name">
+                    K. Lee
+                </div>
+
+                <div class="leader-value">
+                    6.1
+                </div>
+            </div>
+
+            <div class="leader">
+                <div class="leader-category">
+                    Steals Per Game
+                </div>
+
+                <div class="leader-name">
+                    A. Martinez
+                </div>
+
+                <div class="leader-value">
+                    3.0
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCHEDULE -->
+
+    <div class="section" id="schedule-unlimited">
+
+        <div class="section-title">
+            <span>04</span> Schedule
+        </div>
+
+        <div>
+
+            <div class="game">
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Northside Eagles')">Northside Eagles</button></div>
+                <div class="game-time">5:00 PM</div>
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Downtown Raptors')">Downtown Raptors</button></div>
+            </div>
+
+            <div class="game">
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Westside Wolves')">Westside Wolves</button></div>
+                <div class="game-time">6:30 PM</div>
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('City Chargers')">City Chargers</button></div>
+            </div>
+
+            <div class="game">
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Northside Eagles')">Northside Eagles</button></div>
+                <div class="game-time">Saturday • 10:00 AM</div>
+                <div class="game-team"><button class="team-link" onclick="openTeamModal('Westside Wolves')">Westside Wolves</button></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div> <!-- end unlimited division -->
 
 
 </div> <!-- end container -->
